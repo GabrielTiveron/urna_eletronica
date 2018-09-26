@@ -3,16 +3,19 @@
 
 #include<iostream>
 #include<string>
-#include "../inc/cand_BR.hpp"
+#include"../inc/senador.hpp"
+#include"../inc/governador.hpp"
+#include"../inc/presidente.hpp"
+#include "../inc/candidato.hpp"
 
 using namespace std;
 
-Candidato_BR Interacao_Dep_Fed(Candidato_BR Candidatos[]);
-Candidato_BR Interacao_Dep_Dist(Candidato_BR Candidatos[]);
-Candidato_BR Interacao_Sen(Candidato_BR Candidatos[]);
-Candidato_BR Interacao_Gov(Candidato_BR Candidatos[]);
-Candidato_BR Interacao_Pres(Candidato_BR Candidatos[]);
-void Interacao_Fim();
+Candidato   interacao_dep         (string cargo, string extensao);
+Senador     interacao_senador     (Senador senador[]);
+Governador  interacao_governador  (Governador gov[]);
+Presidente  interacao_presidente  (Presidente presidente[]);
+int         codigo_candidato      ();
+bool        confirmacao ();
 
 
 #endif
