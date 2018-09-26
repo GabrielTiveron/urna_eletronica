@@ -10,11 +10,17 @@
 
 using namespace std;
 
+typedef struct opcao_voto
+{
+  bool branco;
+  int codigo;
+}opcao_voto;
+
 Candidato   interacao_dep         (string cargo, string extensao);
 Senador     interacao_senador     (string cargo, string extensao);
 Governador  interacao_governador  (Governador gov[]);
 Presidente  interacao_presidente  (Presidente presidente[]);
-int         codigo_candidato      ();
+opcao_voto         codigo_candidato      ();
 bool        confirmacao ();
 
 

@@ -14,44 +14,62 @@ Candidato interacao_dep(string cargo, string extensao)
   {
     cout << "DIGITE O CODIGO DO SEU CANDIDATO A " << cargo << ": ";
 
-    int codigo;
+    opcao_voto codigo;
     codigo = codigo_candidato();
 
-    separa_atributos atributos;
-    try
+    if(!codigo.branco)
     {
-      atributos = instanciar_candidatos(cargo, extensao, to_string(codigo));
-    }
-    catch(bool e)
-    {
-      cout << "ERRO AO ABRIR ARQUIVO" << endl;
-    }
+      separa_atributos atributos;
+      try
+      {
+        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
+      }
+      catch(bool e)
+      {
+        cout << "ERRO AO ABRIR ARQUIVO" << endl;
+      }
 
-    if(atributos.validade_candidato)
-    {
-      deputado.distribuir_atributos(atributos);
-      deputado.mostrar_dados();
+      if(atributos.validade_candidato)
+      {
+        deputado.distribuir_atributos(atributos);
+        deputado.mostrar_dados();
+      }
+      else
+      {
+        cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
+        deputado.set_candidato_nulo(atributos.validade_candidato);
+      }
+
+
+      bool confirma;
+      confirma = confirmacao();
+
+      if(confirma)
+      {
+        deputado.voto_confirmado();
+        interacao = false;
+      }
+      else
+      {
+        system("clear");
+      }
     }
     else
     {
-      cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-      deputado.set_candidato_nulo(atributos.validade_candidato);
-    }
-
-
-    bool confirma;
-    confirma = confirmacao();
-
-    if(confirma)
-    {
-      deputado.voto_confirmado();
-      interacao = false;
-    }
-    else
-    {
-      system("clear");
+      bool confirma;
+      confirma = confirmacao();
+      if(confirma)
+      {
+        interacao = false;
+        deputado.set_candidato_branco(true);
+      }
+      else
+      {
+        system("clear");
+      }
     }
   }
+
 
   system("clear");
   return deputado;
@@ -68,63 +86,80 @@ Senador interacao_senador(string cargo, string extensao)
   {
     cout << "DIGITE O CODIGO DO SEU CANDIDATO A " << cargo << ": ";
 
-    int codigo;
+    opcao_voto codigo;
     codigo = codigo_candidato();
-
-    separa_atributos atributos;
-    try
+    if(!codigo.branco)
     {
-      atributos = instanciar_candidatos(cargo, extensao, to_string(codigo));
-    }
-    catch(bool e)
-    {
-      cout << "ERRO AO ABRIR ARQUIVO" << endl;
-    }
-
-
-    if(atributos.validade_candidato)
-    {
-      senador.distribuir_atributos(atributos);
-
-      Candidato suplente_1;
-      Candidato suplente_2;
-
+      separa_atributos atributos;
       try
       {
-        atributos  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo));
-        suplente_1.distribuir_atributos(atributos);
-        atributos  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo));
-        suplente_2.distribuir_atributos(atributos);
+        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
       }
       catch(bool e)
       {
         cout << "ERRO AO ABRIR ARQUIVO" << endl;
       }
 
-      senador.set_suplente_1(suplente_1.get_nome());
-      senador.set_suplente_2(suplente_2.get_nome());
-      senador.mostrar_dados();
+
+      if(atributos.validade_candidato)
+      {
+        senador.distribuir_atributos(atributos);
+
+        Candidato suplente_1;
+        Candidato suplente_2;
+
+        try
+        {
+          atributos  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
+          suplente_1.distribuir_atributos(atributos);
+          atributos  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
+          suplente_2.distribuir_atributos(atributos);
+        }
+        catch(bool e)
+        {
+          cout << "ERRO AO ABRIR ARQUIVO" << endl;
+        }
+
+        senador.set_suplente_1(suplente_1.get_nome());
+        senador.set_suplente_2(suplente_2.get_nome());
+        senador.mostrar_dados();
+      }
+      else
+      {
+        cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
+        senador.set_candidato_nulo(atributos.validade_candidato);
+      }
+
+
+      bool confirma;
+      confirma = confirmacao();
+
+      if(confirma)
+      {
+        senador.voto_confirmado();
+        interacao = false;
+      }
+      else
+      {
+        system("clear");
+      }
     }
     else
     {
-      cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-      senador.set_candidato_nulo(atributos.validade_candidato);
-    }
-
-
-    bool confirma;
-    confirma = confirmacao();
-
-    if(confirma)
-    {
-      senador.voto_confirmado();
-      interacao = false;
-    }
-    else
-    {
-      system("clear");
+      bool confirma;
+      confirma = confirmacao();
+      if(confirma)
+      {
+        interacao = false;
+        senador.set_candidato_branco(true);
+      }
+      else
+      {
+        system("clear");
+      }
     }
   }
+
 
   system("clear");
   return senador;
@@ -155,24 +190,28 @@ bool confirmacao()
 }
 
 
-int codigo_candidato()
+opcao_voto codigo_candidato()
 {
   string numero;
+  opcao_voto opcao;
 
   while(true)
   {
     cin >> numero;
-    if (numero.compare("BR") == 0)
+    transform(numero.begin(), numero.end(), numero.begin(), ::toupper);
+    if (numero.compare("BRANCO") == 0)
     {
       cout << "VOTO EM BRANCO" << endl;
-      return 0x7FFF;
+      opcao.branco = true;
+      return opcao;
     }
     else
     {
 
       try
       {
-        return stoi(numero,nullptr,10);
+        opcao.codigo = stoi(numero,nullptr,10);
+        return opcao;
       }
 
       catch(exception &e){

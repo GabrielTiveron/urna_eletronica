@@ -19,13 +19,13 @@ int main()
 {
 
   cout << "QUANTOS ELEITORES IRÃO VOTAR?" << endl;
-  int numero_eleitores = codigo_candidato();
+  opcao_voto numero_eleitores = codigo_candidato();
 
 
-  Eleitor eleitores[numero_eleitores];
+  Eleitor eleitores[numero_eleitores.codigo];
   string nome;
 
-  for(int i = 0; i < numero_eleitores; i++)
+  for(int i = 0; i < numero_eleitores.codigo; i++)
   {
     //eleitores[i].set_nome(cin >> nome);
     eleitores[i].set_candidato_federal(interacao_dep(dep_fed, df));

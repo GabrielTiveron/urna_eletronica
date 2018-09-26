@@ -46,6 +46,11 @@ void Candidato::set_candidato_nulo(bool nulo)
   this->candidato_nulo = nulo;
 }
 
+void Candidato::set_candidato_branco(bool branco)
+{
+  this->candidato_branco = branco;
+}
+
 string Candidato::get_nome()
 {
   return nome;
@@ -74,6 +79,11 @@ int Candidato::get_votos()
 bool Candidato::get_candidato_nulo()
 {
   return candidato_nulo;
+}
+
+bool Candidato::get_candidato_branco()
+{
+  return candidato_branco;
 }
 
 void Candidato::distribuir_atributos(separa_atributos atributos)
