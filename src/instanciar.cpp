@@ -12,7 +12,7 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
 
   if(!file.is_open()){throw(file.is_open());}
     int k = 0;
-    bool cargo_confere, codigo_confere;
+    bool cargo_confere, codigo_confere, achou_candidato;
     string x, y, vice;
 
     while(getline(file, x))
@@ -23,6 +23,7 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
          k=0;
          cargo_confere  = false;
          codigo_confere = false;
+         achou_candidato = false;
 
          while (getline(strstr, word, ';'))
          {
@@ -30,6 +31,7 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
             if(k == 16 && colocar_aspas(codigo).compare(word) == 0){codigo_confere = true;}
             if(cargo_confere && codigo_confere)
             {
+              achou_candidato = true;
               switch (k)
               {
                 case 14:
@@ -47,8 +49,21 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
             }
             k++;
          }
+         if(achou_candidato)
+         {
+           break;
+         }
        }
   file.close();
+
+  if(!cargo_confere || !codigo_confere)
+  {
+    atributos.validade_candidato = false;
+  }
+  else
+  {
+    atributos.validade_candidato = true;
+  }
 
   return atributos;
 }

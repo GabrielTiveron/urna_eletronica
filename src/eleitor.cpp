@@ -17,7 +17,7 @@ void Eleitor::set_candidato_distrital(Candidato distrital)
 {
   this->distrital = distrital;
 }
-void Eleitor::set_senador_1(Senador senador_1)
+void Eleitor::set_senador(Senador senador_1)
 {
   this->senador_1 = senador_1;
 }

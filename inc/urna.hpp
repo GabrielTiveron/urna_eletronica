@@ -11,7 +11,7 @@
 using namespace std;
 
 Candidato   interacao_dep         (string cargo, string extensao);
-Senador     interacao_senador     (Senador senador[]);
+Senador     interacao_senador     (string cargo, string extensao);
 Governador  interacao_governador  (Governador gov[]);
 Presidente  interacao_presidente  (Presidente presidente[]);
 int         codigo_candidato      ();

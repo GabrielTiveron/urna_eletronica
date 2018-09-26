@@ -17,6 +17,7 @@ typedef struct separa_atributos
   string partido;
   string sigla_partido;
   string cargo;
+  bool   validade_candidato;
 }separa_atributos;
 
 
@@ -31,6 +32,7 @@ private:
   string    partido;
   string    sigla_partido;
   string    codigo;
+  bool      candidato_nulo;
 
 public:
 
@@ -43,13 +45,15 @@ public:
   void set_partido        (string partido);
   void set_sigla_partido  (string sigla_partido);
   void set_codigo         (string codigo);
+  void set_candidato_nulo (bool nulo);
 
   string get_nome();
   string get_cargo();
   string get_partido();
   string get_sigla_partido();
   string get_codigo();
-  int get_votos();
+  int    get_votos();
+  bool   get_candidato_nulo();
 
   void    distribuir_atributos  (separa_atributos atributos);
   void    mostrar_dados         ();

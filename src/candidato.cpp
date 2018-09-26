@@ -41,6 +41,11 @@ void Candidato::set_codigo(string codigo)
   this->codigo = codigo;
 }
 
+void Candidato::set_candidato_nulo(bool nulo)
+{
+  this->candidato_nulo = nulo;
+}
+
 string Candidato::get_nome()
 {
   return nome;
@@ -64,6 +69,11 @@ string Candidato::get_codigo()
 int Candidato::get_votos()
 {
   return votos;
+}
+
+bool Candidato::get_candidato_nulo()
+{
+  return candidato_nulo;
 }
 
 void Candidato::distribuir_atributos(separa_atributos atributos)

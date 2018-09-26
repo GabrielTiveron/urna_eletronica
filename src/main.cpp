@@ -8,6 +8,7 @@
 #include"../inc/eleitor.hpp"
 #define dep_fed "DEPUTADO FEDERAL"
 #define dep_dist "DEPUTADO DISTRITAL"
+#define sen "SENADOR"
 #define df "DF"
 
 
@@ -29,6 +30,7 @@ int main()
     //eleitores[i].set_nome(cin >> nome);
     eleitores[i].set_candidato_federal(interacao_dep(dep_fed, df));
     eleitores[i].set_candidato_distrital(interacao_dep(dep_dist, df));
+    eleitores[i].set_senador(interacao_senador(sen, df));
   }
 
 

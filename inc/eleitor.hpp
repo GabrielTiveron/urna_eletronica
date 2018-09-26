@@ -29,7 +29,7 @@ public:
   void set_nome(string nome);
   void set_candidato_federal(Candidato federal);
   void set_candidato_distrital(Candidato distrital);
-  void set_senador_1(Senador senador_1);
+  void set_senador(Senador senador_1);
   void set_senador_2(Senador senador_2);
   void set_governador(Governador governador);
   void set_presidente(Presidente presidente);

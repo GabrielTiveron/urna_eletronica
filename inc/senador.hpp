@@ -3,6 +3,7 @@
 
 #define MAX_SENADOR 23
 #include<string>
+#include<iostream>
 #include"../inc/candidato.hpp"
 
 using namespace std;
@@ -27,6 +28,8 @@ public:
 
   string get_suplente_1();
   string get_suplente_2();
+
+  void mostrar_dados();
 
 
 };
