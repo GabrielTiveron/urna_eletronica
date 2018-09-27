@@ -18,9 +18,10 @@ typedef struct opcao_voto
 
 Candidato   interacao_dep         (string cargo, string extensao);
 Senador     interacao_senador     (string cargo, string extensao);
-Governador  interacao_governador  (Governador gov[]);
+Senador     interacao_senador     (string cargo, string extensao, Senador senador_1);
+Governador  interacao_governador  (string cargo, string extensao);
 Presidente  interacao_presidente  (Presidente presidente[]);
-opcao_voto         codigo_candidato      ();
+opcao_voto  codigo_candidato      ();
 bool        confirmacao ();
 
 

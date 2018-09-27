@@ -165,6 +165,204 @@ Senador interacao_senador(string cargo, string extensao)
   return senador;
 }
 
+
+Senador interacao_senador(string cargo, string extensao, Senador senador_1)
+{
+  Senador senador;
+  opcao_voto codigo;
+
+
+  bool interacao;
+  interacao = true;
+  while(interacao)
+  {
+    cout << "DIGITE O CODIGO DO SEU CANDIDATO A " << cargo << ": ";
+    codigo = codigo_candidato();
+    if(!codigo.branco)
+    {
+      if(to_string(codigo.codigo).compare(tirar_aspas(senador_1.get_codigo())) != 0)
+      {
+        separa_atributos atributos;
+        try
+        {
+          atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
+        }
+        catch(bool e)
+        {
+          cout << "ERRO AO ABRIR ARQUIVO" << endl;
+        }
+
+
+        if(atributos.validade_candidato)
+        {
+          senador.distribuir_atributos(atributos);
+
+          Candidato suplente_1;
+          Candidato suplente_2;
+
+          try
+          {
+            atributos  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
+            suplente_1.distribuir_atributos(atributos);
+            atributos  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
+            suplente_2.distribuir_atributos(atributos);
+          }
+          catch(bool e)
+          {
+            cout << "ERRO AO ABRIR ARQUIVO" << endl;
+          }
+
+          senador.set_suplente_1(suplente_1.get_nome());
+          senador.set_suplente_2(suplente_2.get_nome());
+          senador.mostrar_dados();
+        }
+        else
+        {
+          cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
+          senador.set_candidato_nulo(atributos.validade_candidato);
+        }
+
+
+        bool confirma;
+        confirma = confirmacao();
+
+        if(confirma)
+        {
+          senador.voto_confirmado();
+          interacao = false;
+        }
+        else
+        {
+          system("clear");
+        }
+      }
+      else
+      {
+        cout << "VOTO NULO" << endl;
+        bool confirma;
+        confirma = confirmacao();
+        if(confirma)
+        {
+          senador.set_candidato_nulo(true);
+          interacao = false;
+        }
+        else
+          system("clear");
+      }
+    }
+    else if(codigo.branco)
+    {
+      cout << "VOTO NULO" << endl;
+      bool confirma;
+      confirma = confirmacao();
+      if(confirma)
+      {
+        interacao = false;
+        senador.set_candidato_branco(true);
+      }
+      else
+      {
+        system("clear");
+      }
+    }
+  }
+
+
+  system("clear");
+  return senador;
+}
+
+Governador interacao_governador(string cargo, string extensao)
+{
+  Governador governador;
+
+  bool interacao;
+  interacao = true;
+  while(interacao)
+  {
+    cout << "DIGITE O CODIGO DO SEU CANDIDATO A " << cargo << ": ";
+
+    opcao_voto codigo;
+    codigo = codigo_candidato();
+    if(!codigo.branco)
+    {
+      separa_atributos atributos;
+      try
+      {
+        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
+      }
+      catch(bool e)
+      {
+        cout << "ERRO AO ABRIR ARQUIVO" << endl;
+      }
+
+
+      if(atributos.validade_candidato)
+      {
+        governador.distribuir_atributos(atributos);
+
+        Candidato vice;
+
+        try
+        {
+          atributos  = instanciar_candidatos("VICE-GOVERNADOR", extensao, to_string(codigo.codigo));
+          vice.distribuir_atributos(atributos);
+        }
+        catch(bool e)
+        {
+          cout << "ERRO AO ABRIR ARQUIVO" << endl;
+        }
+
+        governador.set_vice_governador(vice.get_nome());
+        governador.mostrar_dados();
+      }
+      else
+      {
+        cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
+        governador.set_candidato_nulo(atributos.validade_candidato);
+      }
+
+
+      bool confirma;
+      confirma = confirmacao();
+
+      if(confirma)
+      {
+        governador.voto_confirmado();
+        interacao = false;
+      }
+      else
+      {
+        system("clear");
+      }
+    }
+    else
+    {
+      bool confirma;
+      confirma = confirmacao();
+      if(confirma)
+      {
+        interacao = false;
+        governador.set_candidato_branco(true);
+      }
+      else
+      {
+        system("clear");
+      }
+    }
+  }
+
+
+  system("clear");
+  return governador;
+
+}
+
+
+
+
+
+
 bool confirmacao()
 {
   cout << "DIGITE – CONFIRMA – PARA CONFIRMAR ESTE VOTO E – CORRIGE – PARA REINICIAR ESTE VOTO" << endl;
@@ -211,6 +409,7 @@ opcao_voto codigo_candidato()
       try
       {
         opcao.codigo = stoi(numero,nullptr,10);
+        opcao.branco = false;
         return opcao;
       }
 

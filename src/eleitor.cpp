@@ -21,7 +21,7 @@ void Eleitor::set_senador(Senador senador_1)
 {
   this->senador_1 = senador_1;
 }
-void Eleitor::set_senador_2(Senador senador_2)
+void Eleitor::set_senador(Senador senador_2, bool difere_senadores)
 {
   this->senador_2 = senador_2;
 }

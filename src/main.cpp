@@ -9,6 +9,7 @@
 #define dep_fed "DEPUTADO FEDERAL"
 #define dep_dist "DEPUTADO DISTRITAL"
 #define sen "SENADOR"
+#define gov "GOVERNADOR"
 #define df "DF"
 
 
@@ -27,10 +28,12 @@ int main()
 
   for(int i = 0; i < numero_eleitores.codigo; i++)
   {
-    //eleitores[i].set_nome(cin >> nome);
-    eleitores[i].set_candidato_federal(interacao_dep(dep_fed, df));
-    eleitores[i].set_candidato_distrital(interacao_dep(dep_dist, df));
+    // //eleitores[i].set_nome(cin >> nome);
+    // eleitores[i].set_candidato_federal(interacao_dep(dep_fed, df));
+    // eleitores[i].set_candidato_distrital(interacao_dep(dep_dist, df));
     eleitores[i].set_senador(interacao_senador(sen, df));
+    eleitores[i].set_senador(interacao_senador(sen, df, eleitores[i].get_senador_1()), true);
+    // eleitores[i].set_governador(interacao_governador(gov, df));
   }
 
 

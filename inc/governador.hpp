@@ -23,6 +23,8 @@ public:
 
   string get_vice_governador();
 
+  void mostrar_dados();
+
 };
 
 
