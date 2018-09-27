@@ -20,7 +20,7 @@ Candidato   interacao_dep         (string cargo, string extensao);
 Senador     interacao_senador     (string cargo, string extensao);
 Senador     interacao_senador     (string cargo, string extensao, Senador senador_1);
 Governador  interacao_governador  (string cargo, string extensao);
-Presidente  interacao_presidente  (Presidente presidente[]);
+Presidente  interacao_presidente  (string cargo, string extensao);
 opcao_voto  codigo_candidato      ();
 bool        confirmacao ();
 

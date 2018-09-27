@@ -60,7 +60,7 @@ public:
 
   void    distribuir_atributos  (separa_atributos atributos);
   void    mostrar_dados         ();
-  void    voto_confirmado       ();
+  void    voto_confirmado       (int qtd);
 
 };
 

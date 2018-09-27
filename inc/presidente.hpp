@@ -21,7 +21,9 @@ public:
 
   void      set_vice_presidente    (string vice_presidente);
 
-  string    get_vice_presidente    (string vice_presidente);
+  string    get_vice_presidente    ();
+
+  void mostrar_dados();
 
 };
 

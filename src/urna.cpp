@@ -238,7 +238,7 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
       }
       else
       {
-        cout << "VOTO NULO" << endl;
+        cout << "VOTO NULO POR REPETIR O CANDIDATO ANTERIOR" << endl;
         bool confirma;
         confirma = confirmacao();
         if(confirma)
@@ -358,64 +358,88 @@ Governador interacao_governador(string cargo, string extensao)
 
 }
 
-
-
-
-
-
-bool confirmacao()
+Presidente interacao_presidente(string cargo, string extensao)
 {
-  cout << "DIGITE – CONFIRMA – PARA CONFIRMAR ESTE VOTO E – CORRIGE – PARA REINICIAR ESTE VOTO" << endl;
+  Presidente presidente;
 
-  string opcao;
-  while(true)
+  bool interacao;
+  interacao = true;
+  while(interacao)
   {
-    cin >> opcao;
-    transform(opcao.begin(), opcao.end(),opcao.begin(), ::toupper);
-    if(opcao.compare("CONFIRMA") == 0)
-    {
-      return true;
-    }
-    else if(opcao.compare("CORRIGE") == 0)
-    {
-      return false;
-    }
-    else
-    {
-      cout << "POR FAVOR, DIGITE APENAS OS CARACTERES ESPECIFICADOS" << endl;
-    }
-  }
-}
+    cout << "DIGITE O CODIGO DO SEU CANDIDATO A " << cargo << ": ";
 
-
-opcao_voto codigo_candidato()
-{
-  string numero;
-  opcao_voto opcao;
-
-  while(true)
-  {
-    cin >> numero;
-    transform(numero.begin(), numero.end(), numero.begin(), ::toupper);
-    if (numero.compare("BRANCO") == 0)
+    opcao_voto codigo;
+    codigo = codigo_candidato();
+    if(!codigo.branco)
     {
-      cout << "VOTO EM BRANCO" << endl;
-      opcao.branco = true;
-      return opcao;
-    }
-    else
-    {
-
+      separa_atributos atributos;
       try
       {
-        opcao.codigo = stoi(numero,nullptr,10);
-        opcao.branco = false;
-        return opcao;
+        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
+      }
+      catch(bool e)
+      {
+        cout << "ERRO AO ABRIR ARQUIVO" << endl;
       }
 
-      catch(exception &e){
-        cout << "APENAS NÚMEROS SÃO PERMITIDOS!" << endl;
+
+      if(atributos.validade_candidato)
+      {
+        presidente.distribuir_atributos(atributos);
+
+        Candidato vice;
+
+        try
+        {
+          atributos  = instanciar_candidatos("VICE-PRESIDENTE", extensao, to_string(codigo.codigo));
+          vice.distribuir_atributos(atributos);
+        }
+        catch(bool e)
+        {
+          cout << "ERRO AO ABRIR ARQUIVO" << endl;
+        }
+
+        presidente.set_vice_presidente(vice.get_nome());
+        presidente.mostrar_dados();
+      }
+      else
+      {
+        cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
+        presidente.set_candidato_nulo(atributos.validade_candidato);
+      }
+
+
+      bool confirma;
+      confirma = confirmacao();
+
+      if(confirma)
+      {
+        presidente.voto_confirmado();
+        interacao = false;
+      }
+      else
+      {
+        system("clear");
+      }
+    }
+    else
+    {
+      bool confirma;
+      confirma = confirmacao();
+      if(confirma)
+      {
+        interacao = false;
+        presidente.set_candidato_branco(true);
+      }
+      else
+      {
+        system("clear");
       }
     }
   }
+
+
+  system("clear");
+  return presidente;
+
 }

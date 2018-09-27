@@ -102,7 +102,7 @@ void Candidato::mostrar_dados()
   cout << "PARTIDO: " << tirar_aspas(this->get_sigla_partido()) << " – " << tirar_aspas(this->get_partido()) << endl;
 }
 
-void Candidato::voto_confirmado()
+void Candidato::voto_confirmado(int qtd)
 {
-  this->votos++;
+  this->votos = qtd;
 }
