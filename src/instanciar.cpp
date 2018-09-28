@@ -186,26 +186,26 @@ void computar_votos(Eleitor eleitores[])
     //comparar membros para não deixar candidatos repetidos;
     for (int t = j; t > 0; t--)
     {
-      if(deputado_federal[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
-      {delete deputado_federal[t];qtd_dep_fed++;}
-
-      if(deputado_distrital[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
-      {delete deputado_federal[t]; qtd_dep_dist++;}
-
-      //if(senadores_votados[j] == senadores_votados[2*quantidade_eleitores - t]){delete senadores_votados; qtd_sen++;}
-
-      if(governadores_votados[j].get_codigo().compare(governadores_votados[t].get_codigo()) == 0)
-      {delete governadores_votados[t]; qtd_gov++;}
-
-      if(presidentes_votados[j].get_codigo().compare(presidentes_votados[t].get_codigo()) == 0)
-      {delete presidentes_votados[t]; qtd_pres++;}
+      // if(deputado_federal[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
+      // {delete deputado_federal[t];qtd_dep_fed++;}
+      //
+      // if(deputado_distrital[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
+      // {delete deputado_federal[t]; qtd_dep_dist++;}
+      //
+      // //if(senadores_votados[j] == senadores_votados[2*quantidade_eleitores - t]){delete senadores_votados; qtd_sen++;}
+      //
+      // if(governadores_votados[j].get_codigo().compare(governadores_votados[t].get_codigo()) == 0)
+      // {delete governadores_votados[t]; qtd_gov++;}
+      //
+      // if(presidentes_votados[j].get_codigo().compare(presidentes_votados[t].get_codigo()) == 0)
+      // {delete presidentes_votados[t]; qtd_pres++;}
     }
-    deputado_federal[j].voto_confirmado(qtd_dep_fed);
-    deputado_distrital[j].voto_confirmado(qtd_dep_dist);
-    //senadores_votados[j].voto_confirmado(qtd_sen);
-    governadores_votados[j].voto_confirmado(qtd_gov);
-    presidentes_votados[j].voto_confirmado(qtd_pres);
+    // deputado_federal[j].voto_confirmado(qtd_dep_fed);
+    // deputado_distrital[j].voto_confirmado(qtd_dep_dist);
+    // //senadores_votados[j].voto_confirmado(qtd_sen);
+    // governadores_votados[j].voto_confirmado(qtd_gov);
+    // presidentes_votados[j].voto_confirmado(qtd_pres);
   }
 
-  cout << presidente[0].get_votos() << endl;
+  // cout << presidente[0].get_votos() << endl;
 }

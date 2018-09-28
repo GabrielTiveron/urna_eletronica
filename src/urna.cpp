@@ -46,7 +46,6 @@ Candidato interacao_dep(string cargo, string extensao)
 
       if(confirma)
       {
-        deputado.voto_confirmado();
         interacao = false;
       }
       else
@@ -136,7 +135,6 @@ Senador interacao_senador(string cargo, string extensao)
 
       if(confirma)
       {
-        senador.voto_confirmado();
         interacao = false;
       }
       else
@@ -228,7 +226,6 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
 
         if(confirma)
         {
-          senador.voto_confirmado();
           interacao = false;
         }
         else
@@ -328,7 +325,6 @@ Governador interacao_governador(string cargo, string extensao)
 
       if(confirma)
       {
-        governador.voto_confirmado();
         interacao = false;
       }
       else
@@ -414,7 +410,6 @@ Presidente interacao_presidente(string cargo, string extensao)
 
       if(confirma)
       {
-        presidente.voto_confirmado();
         interacao = false;
       }
       else

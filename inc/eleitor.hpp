@@ -34,12 +34,15 @@ public:
   void set_governador(Governador governador);
   void set_presidente(Presidente presidente);
 
+  string get_nome();
   Candidato get_candidato_federal();
   Candidato get_candidato_distrital();
   Senador get_senador_1();
   Senador get_senador_2();
   Governador get_governador();
   Presidente get_presidentes();
+
+  void relatorio_votos();
 
 };
 
