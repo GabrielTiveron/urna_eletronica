@@ -1,6 +1,7 @@
 #include"../inc/urna.hpp"
 #include"../inc/instanciar.hpp"
-
+#include<string>
+#include <cstdlib>
 using namespace std;
 
 

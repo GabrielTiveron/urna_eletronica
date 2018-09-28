@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "../inc/candidato.hpp"
 #include "../inc/instanciar.hpp"
 #include"../inc/urna.hpp"
