@@ -20,6 +20,7 @@ using namespace std;
 
 int main()
 {
+  system("clear");
 
   cout << "QUANTOS ELEITORES IRÃO VOTAR?" << endl;
   opcao_voto numero_eleitores = codigo_candidato();
@@ -41,7 +42,6 @@ int main()
     eleitores[i].set_presidente(interacao_presidente(pres, br));
   }
 
-  // computar_votos(eleitores);
   for(int j = 0; j < numero_eleitores.codigo; j++)
   {
     eleitores[j].relatorio_votos();

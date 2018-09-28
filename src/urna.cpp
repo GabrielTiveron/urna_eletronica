@@ -20,38 +20,27 @@ Candidato interacao_dep(string cargo, string extensao)
     if(!codigo.branco)
     {
       separa_atributos atributos;
-      try
-      {
-        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
-      }
-      catch(bool e)
-      {
-        cout << "ERRO AO ABRIR ARQUIVO" << endl;
-      }
 
-      if(atributos.validade_candidato)
+      atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
+
+      if(atributos.validade_candidato && atributos.candidato_apto)
       {
         deputado.distribuir_atributos(atributos);
         deputado.mostrar_dados();
       }
-      else
+      else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
         deputado.set_candidato_nulo(atributos.validade_candidato);
       }
-
-
-      bool confirma;
-      confirma = confirmacao();
-
-      if(confirma)
+      else if(!atributos.candidato_apto)
       {
-        interacao = false;
+        cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
+        cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
+        deputado.set_candidato_nulo(atributos.candidato_apto);
       }
-      else
-      {
-        system("clear");
-      }
+
+      interacao = confirma_voto();
     }
     else
     {
@@ -90,17 +79,9 @@ Senador interacao_senador(string cargo, string extensao)
     if(!codigo.branco)
     {
       separa_atributos atributos;
-      try
-      {
-        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
-      }
-      catch(bool e)
-      {
-        cout << "ERRO AO ABRIR ARQUIVO" << endl;
-      }
+      atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
-
-      if(atributos.validade_candidato)
+      if(atributos.validade_candidato && atributos.candidato_apto)
       {
         senador.distribuir_atributos(atributos);
 
@@ -123,24 +104,19 @@ Senador interacao_senador(string cargo, string extensao)
         senador.set_suplente_2(suplente_2.get_nome());
         senador.mostrar_dados();
       }
-      else
+      else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
         senador.set_candidato_nulo(atributos.validade_candidato);
       }
-
-
-      bool confirma;
-      confirma = confirmacao();
-
-      if(confirma)
+      else if(!atributos.candidato_apto)
       {
-        interacao = false;
+        cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
+        cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
+        senador.set_candidato_nulo(atributos.candidato_apto);
       }
-      else
-      {
-        system("clear");
-      }
+
+      interacao = confirma_voto();
     }
     else
     {
@@ -181,17 +157,10 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
       if(to_string(codigo.codigo).compare(tirar_aspas(senador_1.get_codigo())) != 0)
       {
         separa_atributos atributos;
-        try
-        {
-          atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
-        }
-        catch(bool e)
-        {
-          cout << "ERRO AO ABRIR ARQUIVO" << endl;
-        }
 
+        atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
-        if(atributos.validade_candidato)
+        if(atributos.validade_candidato && atributos.candidato_apto)
         {
           senador.distribuir_atributos(atributos);
 
@@ -214,24 +183,19 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
           senador.set_suplente_2(suplente_2.get_nome());
           senador.mostrar_dados();
         }
-        else
+        else if(!atributos.validade_candidato)
         {
           cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
           senador.set_candidato_nulo(atributos.validade_candidato);
         }
-
-
-        bool confirma;
-        confirma = confirmacao();
-
-        if(confirma)
+        else if(!atributos.candidato_apto)
         {
-          interacao = false;
+          cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
+          cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
+          senador.set_candidato_nulo(atributos.candidato_apto);
         }
-        else
-        {
-          system("clear");
-        }
+
+        interacao = confirma_voto();
       }
       else
       {
@@ -249,7 +213,6 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
     }
     else if(codigo.branco)
     {
-      cout << "VOTO NULO" << endl;
       bool confirma;
       confirma = confirmacao();
       if(confirma)
@@ -284,17 +247,11 @@ Governador interacao_governador(string cargo, string extensao)
     if(!codigo.branco)
     {
       separa_atributos atributos;
-      try
-      {
-        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
-      }
-      catch(bool e)
-      {
-        cout << "ERRO AO ABRIR ARQUIVO" << endl;
-      }
+
+        atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
 
-      if(atributos.validade_candidato)
+      if(atributos.validade_candidato && atributos.candidato_apto)
       {
         governador.distribuir_atributos(atributos);
 
@@ -313,24 +270,19 @@ Governador interacao_governador(string cargo, string extensao)
         governador.set_vice_governador(vice.get_nome());
         governador.mostrar_dados();
       }
-      else
+      else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
         governador.set_candidato_nulo(atributos.validade_candidato);
       }
-
-
-      bool confirma;
-      confirma = confirmacao();
-
-      if(confirma)
+      else if(!atributos.candidato_apto)
       {
-        interacao = false;
+        cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
+        cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
+        governador.set_candidato_nulo(atributos.candidato_apto);
       }
-      else
-      {
-        system("clear");
-      }
+
+      interacao = confirma_voto();
     }
     else
     {
@@ -369,17 +321,11 @@ Presidente interacao_presidente(string cargo, string extensao)
     if(!codigo.branco)
     {
       separa_atributos atributos;
-      try
-      {
-        atributos = instanciar_candidatos(cargo, extensao, to_string(codigo.codigo));
-      }
-      catch(bool e)
-      {
-        cout << "ERRO AO ABRIR ARQUIVO" << endl;
-      }
+
+      atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
 
-      if(atributos.validade_candidato)
+      if(atributos.validade_candidato && atributos.candidato_apto)
       {
         presidente.distribuir_atributos(atributos);
 
@@ -398,24 +344,20 @@ Presidente interacao_presidente(string cargo, string extensao)
         presidente.set_vice_presidente(vice.get_nome());
         presidente.mostrar_dados();
       }
-      else
+      else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
         presidente.set_candidato_nulo(atributos.validade_candidato);
       }
-
-
-      bool confirma;
-      confirma = confirmacao();
-
-      if(confirma)
+      else if(!atributos.candidato_apto)
       {
-        interacao = false;
+        cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
+        cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
+        presidente.set_candidato_nulo(!atributos.candidato_apto);
       }
-      else
-      {
-        system("clear");
-      }
+
+      interacao = confirma_voto();
+      presidente.set_candidato_branco(false);
     }
     else
     {
@@ -437,4 +379,20 @@ Presidente interacao_presidente(string cargo, string extensao)
   system("clear");
   return presidente;
 
+}
+
+bool confirma_voto()
+{
+  bool confirma, interacao = true;
+  confirma = confirmacao();
+
+  if(confirma)
+  {
+    interacao = false;
+  }
+  else
+  {
+    system("clear");
+  }
+  return interacao;
 }

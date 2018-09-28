@@ -73,11 +73,11 @@ Presidente Eleitor::get_presidentes()
 void Eleitor::relatorio_votos()
 {
   cout << "NOME: " << this->get_nome() << endl;
-  cout << "DEPUTADO FEDERAL: " << tirar_aspas(this->get_candidato_federal().get_nome()) << endl;
-  cout << "DEPUTADO DISTRITAL: " << tirar_aspas(this->get_candidato_distrital().get_nome()) << endl;
-  cout << "SENADOR: " << tirar_aspas(this->get_senador_1().get_nome()) << endl;
-  cout << "SENADOR 2˚ OPÇÃO: " << tirar_aspas(this->get_senador_2().get_nome()) << endl;
-  cout << "GOVERNADOR: " << tirar_aspas(this->get_governador().get_nome()) << endl;
-  cout << "PRESIDENTE: " << tirar_aspas(this->get_presidentes().get_nome()) << endl;
+  cout << "DEPUTADO FEDERAL: " << this->get_candidato_federal().conferir_estado() << endl;
+  cout << "DEPUTADO DISTRITAL: " << this->get_candidato_distrital().conferir_estado() << endl;
+  cout << "SENADOR: " << this->get_senador_1().conferir_estado() << endl;
+  cout << "SENADOR 2˚ OPÇÃO: " << this->get_senador_2().conferir_estado() << endl;
+  cout << "GOVERNADOR: " << this->get_governador().conferir_estado() << endl;
+  cout << "PRESIDENTE: " << this->get_presidentes().conferir_estado() << endl;
   cout << "––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––" << endl;
 }

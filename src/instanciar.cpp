@@ -57,10 +57,12 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
             }
             k++;
          }
-         if(achou_candidato && apto_confere)
+         if(achou_candidato)
          {
+           atributos.candidato_apto = apto_confere;
            break;
          }
+
        }
   file.close();
 
@@ -147,65 +149,16 @@ opcao_voto codigo_candidato()
   }
 }
 
-void computar_votos(Eleitor eleitores[])
+separa_atributos ler_arquivo(string cargo, string extensao, string codigo)
 {
-  int quantidade_eleitores;
-
-  quantidade_eleitores = sizeof(Eleitor) / sizeof(eleitores);
-
-  Candidato deputado_federal[quantidade_eleitores];
-  Candidato deputado_distrital[quantidade_eleitores];
-  Senador senadores_votados[quantidade_eleitores * 2];
-  Governador governadores_votados[quantidade_eleitores];
-  Presidente presidentes_votados[quantidade_eleitores];
-
-
-  for(int i = 0; i < quantidade_eleitores; i++)
+  separa_atributos atributos;
+  try
   {
-    deputado_federal[i]                       = eleitores[i].get_candidato_federal();
-    deputado_distrital[i]                     = eleitores[i].get_candidato_distrital();
-    senadores_votados[i]                      = eleitores[i].get_senador_1();
-    //senadores_votados[2*quantidade_eleitores-i] = eleitores[i].get_senador_2();
-    governadores_votados[i]                   = eleitores[i].get_governador();
-    presidentes_votados[i]                    = eleitores[i].get_presidentes();
+    atributos = instanciar_candidatos(cargo, extensao, codigo);
   }
-
-  int qtd_dep_fed,
-      qtd_dep_dist,
-      qtd_sen,
-      qtd_gov,
-      qtd_pres;
-
-  for (int j = 0; j < quantidade_eleitores; j++)
+  catch(bool e)
   {
-    qtd_dep_fed = 0;
-    qtd_dep_dist = 0;
-    qtd_sen = 0;
-    qtd_gov = 0;
-    qtd_pres = 0;
-    //comparar membros para não deixar candidatos repetidos;
-    for (int t = j; t > 0; t--)
-    {
-      // if(deputado_federal[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
-      // {delete deputado_federal[t];qtd_dep_fed++;}
-      //
-      // if(deputado_distrital[j].get_codigo().compare(deputado_federal[t].get_codigo()) == 0)
-      // {delete deputado_federal[t]; qtd_dep_dist++;}
-      //
-      // //if(senadores_votados[j] == senadores_votados[2*quantidade_eleitores - t]){delete senadores_votados; qtd_sen++;}
-      //
-      // if(governadores_votados[j].get_codigo().compare(governadores_votados[t].get_codigo()) == 0)
-      // {delete governadores_votados[t]; qtd_gov++;}
-      //
-      // if(presidentes_votados[j].get_codigo().compare(presidentes_votados[t].get_codigo()) == 0)
-      // {delete presidentes_votados[t]; qtd_pres++;}
-    }
-    // deputado_federal[j].voto_confirmado(qtd_dep_fed);
-    // deputado_distrital[j].voto_confirmado(qtd_dep_dist);
-    // //senadores_votados[j].voto_confirmado(qtd_sen);
-    // governadores_votados[j].voto_confirmado(qtd_gov);
-    // presidentes_votados[j].voto_confirmado(qtd_pres);
+    cout << "ERRO AO ABRIR ARQUIVO" << endl;
   }
-
-  // cout << presidente[0].get_votos() << endl;
+  return atributos;
 }

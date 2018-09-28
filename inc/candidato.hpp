@@ -18,6 +18,7 @@ typedef struct separa_atributos
   string sigla_partido;
   string cargo;
   bool   validade_candidato;
+  bool   candidato_apto;
 }separa_atributos;
 
 
@@ -27,7 +28,6 @@ class Candidato
 private:
 
   string    nome;
-  int       votos;
   string    cargo;
   string    partido;
   string    sigla_partido;
@@ -38,7 +38,6 @@ private:
 public:
 
   Candidato();
-  Candidato(string cargo);
   ~Candidato();
 
   void set_nome             (string nome);
@@ -54,13 +53,12 @@ public:
   string get_partido();
   string get_sigla_partido();
   string get_codigo();
-  int    get_votos();
   bool   get_candidato_nulo();
   bool   get_candidato_branco();
 
   void    distribuir_atributos  (separa_atributos atributos);
   void    mostrar_dados         ();
-  void    voto_confirmado       (int qtd);
+  string  conferir_estado       ();
 
 };
 

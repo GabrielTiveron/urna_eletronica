@@ -5,20 +5,9 @@
 
 using namespace std;
 
-Candidato::Candidato()
-{
-  votos = 0;
-}
+Candidato::Candidato(){}
 
-Candidato::Candidato(string cargo)
-{
-  this->cargo = "\"" + cargo + "\"";
-}
-
-Candidato::~Candidato()
-{
-
-}
+Candidato::~Candidato(){}
 
 void Candidato::set_nome(string nome)
 {
@@ -71,10 +60,6 @@ string Candidato::get_codigo()
 {
   return codigo;
 }
-int Candidato::get_votos()
-{
-  return votos;
-}
 
 bool Candidato::get_candidato_nulo()
 {
@@ -102,7 +87,16 @@ void Candidato::mostrar_dados()
   cout << "PARTIDO: " << tirar_aspas(this->get_sigla_partido()) << " – " << tirar_aspas(this->get_partido()) << endl;
 }
 
-void Candidato::voto_confirmado(int qtd)
+string  Candidato::conferir_estado()
 {
-  this->votos = qtd;
+  if(this->get_candidato_branco())
+  {
+    return "BRANCO";
+  }
+  else if(this->get_candidato_nulo())
+  {
+    return "NULO";
+  }
+
+  return tirar_aspas(this->nome);
 }
