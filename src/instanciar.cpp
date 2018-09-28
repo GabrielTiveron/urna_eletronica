@@ -6,6 +6,7 @@
 #include"../inc/presidente.hpp"
 #include "../inc/candidato.hpp"
 #include<iostream>
+#include<algorithm>
 
 
 separa_atributos instanciar_candidatos(string cargo, string extensao, string codigo)
