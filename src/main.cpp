@@ -34,6 +34,7 @@ int main()
     cout << "DIGITE SEU NOME: ";
     cin >> nome;
     eleitores[i].set_nome(nome);
+    system("clear");
     eleitores[i].set_candidato_federal(interacao_dep(dep_fed, df));
     eleitores[i].set_candidato_distrital(interacao_dep(dep_dist, df));
     eleitores[i].set_senador(interacao_senador(sen, df));

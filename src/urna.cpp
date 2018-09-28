@@ -41,6 +41,7 @@ Candidato interacao_dep(string cargo, string extensao)
       }
 
       interacao = confirma_voto();
+      deputado.set_candidato_branco(false);
     }
     else
     {
@@ -117,6 +118,7 @@ Senador interacao_senador(string cargo, string extensao)
       }
 
       interacao = confirma_voto();
+      senador.set_candidato_branco(false);
     }
     else
     {
@@ -183,12 +185,12 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
           senador.set_suplente_2(suplente_2.get_nome());
           senador.mostrar_dados();
         }
-        else if(!atributos.validade_candidato)
+        if(!atributos.validade_candidato)
         {
           cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
           senador.set_candidato_nulo(atributos.validade_candidato);
         }
-        else if(!atributos.candidato_apto)
+        if(!atributos.candidato_apto)
         {
           cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
           cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
@@ -196,6 +198,7 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
         }
 
         interacao = confirma_voto();
+        senador.set_candidato_branco(false);
       }
       else
       {
@@ -283,6 +286,7 @@ Governador interacao_governador(string cargo, string extensao)
       }
 
       interacao = confirma_voto();
+      governador.set_candidato_branco(false);
     }
     else
     {
