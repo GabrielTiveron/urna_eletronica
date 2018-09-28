@@ -100,7 +100,7 @@ bool confirmacao()
   while(true)
   {
     cin >> opcao;
-    transform(opcao.begin(), opcao.end(),opcao.begin(), ::toupper);
+    std::transform(opcao.begin(), opcao.end(),opcao.begin(), ::toupper);
     if(opcao.compare("CONFIRMA") == 0)
     {
       return true;
@@ -125,7 +125,7 @@ opcao_voto codigo_candidato()
   while(true)
   {
     cin >> numero;
-    transform(numero.begin(), numero.end(), numero.begin(), ::toupper);
+    std::transform(numero.begin(), numero.end(), numero.begin(), ::toupper);
     if (numero.compare("BRANCO") == 0)
     {
       cout << "VOTO EM BRANCO" << endl;
