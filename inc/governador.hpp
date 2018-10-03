@@ -16,14 +16,14 @@ private:
 
 public:
 
-  Governador();
-  ~Governador();
+  Governador  ();
+  ~Governador ();
 
-  void set_vice_governador(string vice_governador);
+  void   set_vice_governador  (string vice_governador);
 
-  string get_vice_governador();
+  string get_vice_governador  ();
 
-  void mostrar_dados();
+  void   mostrar_dados        ();
 
 };
 

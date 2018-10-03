@@ -35,6 +35,7 @@ separa_atributos instanciar_candidatos(string cargo, string extensao, string cod
 
          while (getline(strstr, word, ';'))
          {
+            if(k == 12){atributos.nm_ue = word;}
             if(k == 14 && word.compare(colocar_aspas(cargo)) == 0){cargo_confere   = true; atributos.cargo = word;}
             if(k == 16 && colocar_aspas(codigo).compare(word) == 0){codigo_confere = true;}
             if(k == 23 && word.compare("\"INAPTO\"") != 0){apto_confere = true;}

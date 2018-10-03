@@ -40,5 +40,6 @@ void Senador::mostrar_dados()
   cout << "CARGO: " << tirar_aspas(this->get_cargo()) << endl;
   cout << "1º SUPLENTE: " << tirar_aspas(this->get_suplente_1()) << endl;
   cout << "2º SUPLENTE: " << tirar_aspas(this->get_suplente_2()) << endl;
+  cout << "NM UE: " << tirar_aspas(this->get_nm_ue()) << endl;
   cout << "PARTIDO: " << tirar_aspas(this->get_sigla_partido()) << " – " << tirar_aspas(this->get_partido()) << endl;
 }

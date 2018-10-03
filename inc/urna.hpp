@@ -21,7 +21,7 @@ Senador     interacao_senador     (string cargo, string extensao);
 Senador     interacao_senador     (string cargo, string extensao, Senador senador_1);
 Governador  interacao_governador  (string cargo, string extensao);
 Presidente  interacao_presidente  (string cargo, string extensao);
-bool        confirma_voto();
+bool        confirma_voto         ();
 
 
 #endif

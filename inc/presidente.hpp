@@ -23,7 +23,7 @@ public:
 
   string    get_vice_presidente    ();
 
-  void mostrar_dados();
+  void      mostrar_dados          ();
 
 };
 

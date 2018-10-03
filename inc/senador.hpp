@@ -19,17 +19,16 @@ private:
 
 public:
 
-  Senador();
-  Senador(bool primeiro_senador);
-  ~Senador();
+  Senador     ();
+  ~Senador    ();
 
-  void set_suplente_1(string suplente_1);
-  void set_suplente_2(string suplente_2);
+  void   set_suplente_1 (string suplente_1);
+  void   set_suplente_2 (string suplente_2);
 
-  string get_suplente_1();
-  string get_suplente_2();
+  string get_suplente_1 ();
+  string get_suplente_2 ();
 
-  void mostrar_dados();
+  void   mostrar_dados  ();
 
 
 };

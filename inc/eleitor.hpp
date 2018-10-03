@@ -24,23 +24,23 @@ private:
 
 public:
 
-  Eleitor();
-  ~Eleitor();
-  void set_nome(string nome);
-  void set_candidato_federal(Candidato federal);
-  void set_candidato_distrital(Candidato distrital);
-  void set_senador(Senador senador_1);
-  void set_senador(Senador senador_2, bool difere_senadores);
-  void set_governador(Governador governador);
-  void set_presidente(Presidente presidente);
+  Eleitor                       ();
+  ~Eleitor                      ();
+  void set_nome                 (string nome);
+  void set_candidato_federal    (Candidato federal);
+  void set_candidato_distrital  (Candidato distrital);
+  void set_senador              (Senador senador_1);
+  void set_senador              (Senador senador_2, bool difere_senadores);
+  void set_governador           (Governador governador);
+  void set_presidente           (Presidente presidente);
 
-  string get_nome();
-  Candidato get_candidato_federal();
-  Candidato get_candidato_distrital();
-  Senador get_senador_1();
-  Senador get_senador_2();
-  Governador get_governador();
-  Presidente get_presidentes();
+  string     get_nome                ();
+  Candidato  get_candidato_federal   ();
+  Candidato  get_candidato_distrital ();
+  Senador    get_senador_1           ();
+  Senador    get_senador_2           ();
+  Governador get_governador          ();
+  Presidente get_presidentes         ();
 
   void relatorio_votos();
 

@@ -28,17 +28,19 @@ Candidato interacao_dep(string cargo, string extensao)
       {
         deputado.distribuir_atributos(atributos);
         deputado.mostrar_dados();
+        deputado.set_candidato_nulo(false);
+
       }
       else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-        deputado.set_candidato_nulo(atributos.validade_candidato);
+        deputado.set_candidato_nulo(!atributos.validade_candidato);
       }
       else if(!atributos.candidato_apto)
       {
         cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
         cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
-        deputado.set_candidato_nulo(atributos.candidato_apto);
+        deputado.set_candidato_nulo(!atributos.candidato_apto);
       }
 
       interacao = confirma_voto();
@@ -80,7 +82,7 @@ Senador interacao_senador(string cargo, string extensao)
     codigo = codigo_candidato();
     if(!codigo.branco)
     {
-      separa_atributos atributos;
+      separa_atributos atributos, atributos_suplentes;
       atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
       if(atributos.validade_candidato && atributos.candidato_apto)
@@ -92,10 +94,10 @@ Senador interacao_senador(string cargo, string extensao)
 
         try
         {
-          atributos  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
-          suplente_1.distribuir_atributos(atributos);
-          atributos  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
-          suplente_2.distribuir_atributos(atributos);
+          atributos_suplentes  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
+          suplente_1.distribuir_atributos(atributos_suplentes);
+          atributos_suplentes  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
+          suplente_2.distribuir_atributos(atributos_suplentes);
         }
         catch(bool e)
         {
@@ -105,17 +107,18 @@ Senador interacao_senador(string cargo, string extensao)
         senador.set_suplente_1(suplente_1.get_nome());
         senador.set_suplente_2(suplente_2.get_nome());
         senador.mostrar_dados();
+        senador.set_candidato_nulo(false);
       }
       else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-        senador.set_candidato_nulo(atributos.validade_candidato);
+        senador.set_candidato_nulo(!atributos.validade_candidato);
       }
       else if(!atributos.candidato_apto)
       {
         cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
         cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
-        senador.set_candidato_nulo(atributos.candidato_apto);
+        senador.set_candidato_nulo(!atributos.candidato_apto);
       }
 
       interacao = confirma_voto();
@@ -159,7 +162,7 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
     {
       if(to_string(codigo.codigo).compare(tirar_aspas(senador_1.get_codigo())) != 0)
       {
-        separa_atributos atributos;
+        separa_atributos atributos, atributos_suplentes;
 
         atributos = ler_arquivo(cargo, extensao, to_string(codigo.codigo));
 
@@ -172,10 +175,10 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
 
           try
           {
-            atributos  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
-            suplente_1.distribuir_atributos(atributos);
-            atributos  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
-            suplente_2.distribuir_atributos(atributos);
+            atributos_suplentes  = instanciar_candidatos("1º SUPLENTE", extensao, to_string(codigo.codigo));
+            suplente_1.distribuir_atributos(atributos_suplentes);
+            atributos_suplentes  = instanciar_candidatos("2º SUPLENTE", extensao, to_string(codigo.codigo));
+            suplente_2.distribuir_atributos(atributos_suplentes);
           }
           catch(bool e)
           {
@@ -185,17 +188,18 @@ Senador interacao_senador(string cargo, string extensao, Senador senador_1)
           senador.set_suplente_1(suplente_1.get_nome());
           senador.set_suplente_2(suplente_2.get_nome());
           senador.mostrar_dados();
+          senador.set_candidato_nulo(false);
         }
         if(!atributos.validade_candidato)
         {
           cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-          senador.set_candidato_nulo(atributos.validade_candidato);
+          senador.set_candidato_nulo(!atributos.validade_candidato);
         }
         if(!atributos.candidato_apto)
         {
           cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
           cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
-          senador.set_candidato_nulo(atributos.candidato_apto);
+          senador.set_candidato_nulo(!atributos.candidato_apto);
         }
 
         interacao = confirma_voto();
@@ -273,17 +277,18 @@ Governador interacao_governador(string cargo, string extensao)
 
         governador.set_vice_governador(vice.get_nome());
         governador.mostrar_dados();
+        governador.set_candidato_nulo(false);
       }
       else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-        governador.set_candidato_nulo(atributos.validade_candidato);
+        governador.set_candidato_nulo(!atributos.validade_candidato);
       }
       else if(!atributos.candidato_apto)
       {
         cout << "CANDIDATO INÁPTO À ELEIÇÃO VIGENTE" << endl;
         cout << "SEU VOTO SERÁ ATRIBUIDO AOS VOTOS NULOS" << endl;
-        governador.set_candidato_nulo(atributos.candidato_apto);
+        governador.set_candidato_nulo(!atributos.candidato_apto);
       }
 
       interacao = confirma_voto();
@@ -348,11 +353,12 @@ Presidente interacao_presidente(string cargo, string extensao)
 
         presidente.set_vice_presidente(vice.get_nome());
         presidente.mostrar_dados();
+        presidente.set_candidato_nulo(false);
       }
       else if(!atributos.validade_candidato)
       {
         cout << "SEU VOTO ESTÁ SENDO ATRIBUIDO AOS VOTOS NULOS" << endl;
-        presidente.set_candidato_nulo(atributos.validade_candidato);
+        presidente.set_candidato_nulo(!atributos.validade_candidato);
       }
       else if(!atributos.candidato_apto)
       {
