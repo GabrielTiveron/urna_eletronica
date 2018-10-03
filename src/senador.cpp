@@ -6,11 +6,6 @@ Senador::Senador()
 {
 }
 
-Senador::Senador(bool primeiro_senador)
-{
-  this->primeiro_senador = primeiro_senador;
-}
-
 Senador::~Senador()
 {
 
