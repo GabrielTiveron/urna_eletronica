@@ -20,6 +20,7 @@ Estando no loop de votos será solicitado o código de cada candidato, inserindo
 ![alt text](https://gitlab.com/GabrielTiveron/ep1/blob/master/Img/Captura%20de%20Tela%202018-10-02%20às%2023.31.01.png "Candidato Inapto")
 * Ao repetir o voto num mesmo Senador o voto será atribuído como nulo;
 ![alt text](https://gitlab.com/GabrielTiveron/ep1/blob/master/Img/Captura%20de%20Tela%202018-10-02%20às%2023.30.35.png "Senador nulo") 
+* A digitação é identificada normalmente com caractéres maiúsculos ou minúsculos, para maior comodidade do usuário;
 * Tem completo controle sobre votos NULO's e BRANCO's.
 
 ## Bugs e problemas
